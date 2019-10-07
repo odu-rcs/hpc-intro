@@ -286,11 +286,11 @@ script, these options are specified on the command-line when starting a job. To 
 uses 2 CPUs for instance, we could use the following command:
 
 ```
-[remote]$ srun -c 2 echo "This job will use 2 CPUs."
+[remote]$ srun -n 2 echo "This job will use 2 cores."
 ```
 {: .bash}
 ```
-This job will use 2 CPUs.
+This job will use 2 cores.
 ```
 {: .output}
 
