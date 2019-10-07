@@ -164,9 +164,9 @@ stuck with your site's default resources, which is probably not what we want.
 
 The following are several key resource requests:
 
-* `-n <nnodes>` - how many nodes does your job need? 
+* `-N <nnodes>` - How many nodes does your job need? 
 
-* `-c <ncpus>` - How many CPUs does your job need?
+* `-n <ntasks>` - How many cores does your job need?
 
 * `--mem=<megabytes>` - How much memory on a node does your job need in megabytes? You can also
   specify gigabytes using by adding a little "g" afterwards (example: `--mem=5g`)
@@ -179,15 +179,7 @@ about how to make sure that you're using resources effectively in a later episod
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 2 CPUs, 4 gigabytes of memory, and 5 minutes of walltime.
-{: .challenge}
-
-> ## Job environment variables
->
-> When SLURM runs a job, it sets a number of environment variables for the job. One of these will
-> let us check our work from the last problem. The `SLURM_CPUS_PER_TASK` variable is set to the
-> number of CPUs we requested with `-c`. Using the `SLURM_CPUS_PER_TASK` variable, modify your job
-> so that it prints how many CPUs have been allocated.
+> Submit a job that will use 2 cores, 4 gigabytes of memory, and 5 minutes of walltime.
 {: .challenge}
 
 Resource requests are typically binding. If you exceed them, your job will be killed. Let's use
@@ -308,20 +300,12 @@ Typically, the resulting shell environment will be the same as that for `sbatch`
 
 Sometimes, you will need a lot of resource for interactive use. Perhaps it's our first time running
 an analysis or we are attempting to debug something that went wrong with a previous job.
-Fortunately, SLURM makes it easy to start an interactive job with `srun`:
+Fortunately, SLURM makes it easy to start an interactive job with `salloc`:
 
 ```
-[remote]$ srun --x11 --pty bash
+[remote]$ salloc
 ```
 {: .bash}
-
-> ## Note for administrators
-> 
-> The `--x11` option will not work unless the
-> [slurm-spank-x11](https://github.com/hautreux/slurm-spank-x11) plugin is installed. You should
-> also make sure `xeyes` is installed as an example X11 app (`xorg-x11-apps` package on CentOS). If
-> you do not have these installed, just have students use `srun --pty bash` instead.
-{: .callout}
 
 You should be presented with a bash prompt. Note that the prompt will likely change to reflect your
 new location, in this case the worker node we are logged on. You can also verify this with

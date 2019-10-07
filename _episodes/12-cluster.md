@@ -31,7 +31,7 @@ super computer after she has requested an account on the cluster.
 
 Lola walks to the IT department and finishes the paper work to get an account. One of the admins 
 promises to sit down with her in the morning to show her the way around the machine. The admin 
-explains that Lola will use a small to mid-range HPC cluster named `{{ site.cluster_name }}`.
+explains that Lola will use a HPC cluster named `{{ site.cluster_name }}`.
 
 ## Going remote
 
