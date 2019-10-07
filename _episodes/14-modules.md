@@ -75,32 +75,44 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ## Loading and unloading software
 
 To load a software module, use `module load`.
-In this example we will use Python 3.
+In this example we will use a SLURM command, `salloc`.
 
-Initially, Python 3 is not loaded. 
+Initially, slurm is loaded.
 We can test this by using the `which` command.
 `which` looks for programs the same way that Bash does,
 so we can use it to tell us where a particular piece of software is stored.
 ```
-[yourUsername@wahab-01 ~]$ which python3
+[yourUsername@wahab-01 ~]$ which salloc
 ```
 {: .bash}
 ```
-python3: Command not found.
+/shared/apps/common/slurm/19-05-0-1-l46y/bin/salloc
 ```
 {: .output}
 
-We can load the `python3` command with `module load`:
+For testing, we can unload the slurm module using `module unload`:
 
 ```
-[yourUsername@wahab-01 ~]$ module load python
-[yourUsername@wahab-01 ~]$ which python3
+[yourUsername@wahab-01 ~]$ module unload slurm
+[yourUsername@wahab-01 ~]$ which salloc
 ```
 {: .bash}
 ```
-/cm/shared/applications/Python/3.6.8/bin/python3
 ```
 {: .output}
+
+Now, let's load slurm again and try running which. 
+
+```
+[yourUsername@wahab-01 ~]$ module load slurm
+[yourUsername@wahab-01 ~]$ which salloc
+```
+{: .bash}
+```
+/shared/apps/common/slurm/19-05-0-1-l46y/bin/salloc
+```
+{: .output}
+
 
 So what just happened?
 
@@ -115,22 +127,22 @@ variables we can print it out using `echo`.
 ```
 {: .bash}
 ```
-/cm/shared/applications/libffi/3.2.1/bin:/cm/shared/applications/openssl/1.1.1b/bin:/cm/shared/applications/libmpdec/2.4.2/bin:/cm/shared/applications/Python/3.6.8/bin:/cm/shared/applications/slurm/current/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/cm/local/apps/environment-modules/3.2.10/bin
+/shared/apps/common/slurm/19-05-0-1-l46y/bin:/home/tstil004/spack/spack/bin:/home/tstil004/.spack/openssl-1.1.1b/bin:/home/tstil004/.local/bin:/home/tstil004/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 ```
 {: .output}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
-difference: the `/cm/shared/applications/Python/3.6.8/bin/` directory at
+difference: the `/shared/apps/common/slurm/19-05-0-1-l46y/bin` directory at
 the beginning. When we ran `module load python`, it added this directory to the beginning of
 our `$PATH`. Let's examine what's there:
 
 ```
-[yourUsername@wahab-01 ~]$ ls /cm/shared/applications/Python/3.6.8/bin/
+[yourUsername@wahab-01 ~]$ ls /shared/apps/common/slurm/19-05-0-1-l46y/bin
 ```
 {: .bash}
 ```
-2to3      easy_install      idle3    pip   pip3.6  pydoc3.6  python3    python3.6-config  python3.6m-config  pyvenv      wheel
-2to3-3.6  easy_install-3.6  idle3.6  pip3  pydoc3  python    python3.6  python3.6m        python3-config     pyvenv-3.6
+sacct  sacctmgr  salloc  sattach  sbatch  sbcast  scancel  scontrol  
+sdiag  sinfo  smap  sprio  squeue  sreport  srun  srun.0  sshare  sstat  strigger
 ```
 {: .output}
 
