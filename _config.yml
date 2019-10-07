@@ -76,12 +76,12 @@ start_time: 0
 #   possible values: slurm (planned lsf & pbs)
 scheduler: "slurm"
 # * login_hostname: the (fully qualified) host name of the cluster login node
-login_hostname: "turing.hpc.odu.edu"
+login_hostname: "wahab.hpc.odu.edu"
 # * login_host: the login node's (short) host name as printed by `hostname` as well
 #   as displayed by the shell prompt
-login_host: "turing1"
+login_host: "wahab-01"
 # * cluster_name: the people-friendly name of the cluster
-cluster_name: "Turing"
+cluster_name: "Wahab"
 # * shared_fast_filesystem: the location of the fast filesystem (which usually is also the
 #   scratch space)
 shared_fast_filesystem: "/scratch-lustre"
